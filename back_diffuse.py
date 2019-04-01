@@ -20,11 +20,11 @@ w2 = tf.Variable(tf.random_normal([3, 1], stddev=1, seed=1))
 
 a = tf.matmul(x, w1)
 y = tf.matmul(a, w2)
-#利用梯度下降函数进行训练
+# 利用梯度下降函数进行训练
 loss = tf.reduce_mean(tf.square(y - y_))
 train_step = tf.train.GradientDescentOptimizer(0.001).minimize(loss)
 # train_step=tf.train.MomentumOptimizer(0.001,0.9).minimize(loss)
-#训练
+# 训练
 with tf.Session() as sess:
     init_op = tf.global_variables_initializer()
     sess.run(init_op)
