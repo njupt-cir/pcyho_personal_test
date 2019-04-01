@@ -4,26 +4,27 @@ import tensorflow as tf
 import numpy as np
 
 BATCH_SIZE = 8
+# 随机数生成种子
 seed = 22333
-
+# 生成32维2列张量
 rng = np.random.RandomState(seed)
 X = rng.rand(32, 2)
-
+# 筛选数据
 Y = [[int(x0 + x1) < 1] for (x0, x1) in X]
 
 x = tf.placeholder('float32', shape=(None, 2))
 y_ = tf.placeholder('float32', shape=(None, 1))
-
+# 生成随机数据
 w1 = tf.Variable(tf.random_normal([2, 3], stddev=1, seed=1))
 w2 = tf.Variable(tf.random_normal([3, 1], stddev=1, seed=1))
 
 a = tf.matmul(x, w1)
 y = tf.matmul(a, w2)
-
+#利用梯度下降函数进行训练
 loss = tf.reduce_mean(tf.square(y - y_))
 train_step = tf.train.GradientDescentOptimizer(0.001).minimize(loss)
 # train_step=tf.train.MomentumOptimizer(0.001,0.9).minimize(loss)
-
+#训练
 with tf.Session() as sess:
     init_op = tf.global_variables_initializer()
     sess.run(init_op)
