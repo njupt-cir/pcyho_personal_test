@@ -18,4 +18,4 @@ with tf.Session() as sess:
     sess.run(init_op)
     print(sess.run(y))
 
-# x *w1 *w2 ssss
+# x *w1 *w2
