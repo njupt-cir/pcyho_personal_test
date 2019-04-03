@@ -5,6 +5,8 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="numpy.random.RandomState" />
+          <option value="numpy.random.rand" />
+          <option value="numpy.random.normal" />
         </list>
       </option>
     </inspection_tool>
