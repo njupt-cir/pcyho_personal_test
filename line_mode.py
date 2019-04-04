@@ -11,6 +11,7 @@ weight1 = tf.Variable(np.random.rand(inputX.shape[1], 4))
 biase1 = tf.Variable(np.random.rand(inputX.shape[1], 4))
 x1 = tf.placeholder(tf.float64, [None, 1])
 y1_ = tf.matmul(x1, weight1) + biase1
+
 # secound
 weight2 = tf.Variable(np.random.rand(4, 1))
 biase2 = tf.Variable(np.random.rand(inputX.shape[1], 1))
@@ -22,7 +23,7 @@ loss = tf.reduce_mean(tf.reduce_sum(tf.square((y2_ - y)), reduction_indices=[1])
 
 train = tf.train.GradientDescentOptimizer(0.25).minimize(loss)
 
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 
 with tf.Session() as sess:
     sess.run(init)
@@ -35,7 +36,7 @@ with tf.Session() as sess:
     print(biase1.eval(sess), end='\n\n')
     print(biase2.eval(sess), end='\n\n')
 
-    x_data = np.matrix([[1.], [2.], [3.]])
+    x_data = np.array([[1.], [2.], [3.]])
     print(sess.run(y2_, feed_dict={x1: x_data}))
 
 """
@@ -53,4 +54,6 @@ with tf.Session() as sess:
 [[ 4.9984506 ]
  [ 8.99440945]
  [12.99036829]]
+
+some time may get [nan], just run again
 """

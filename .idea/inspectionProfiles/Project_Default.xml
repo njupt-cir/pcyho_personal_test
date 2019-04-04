@@ -7,6 +7,7 @@
           <option value="numpy.random.RandomState" />
           <option value="numpy.random.rand" />
           <option value="numpy.random.normal" />
+          <option value="numpy.array" />
         </list>
       </option>
     </inspection_tool>
