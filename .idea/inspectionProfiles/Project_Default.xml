@@ -8,6 +8,8 @@
           <option value="numpy.random.rand" />
           <option value="numpy.random.normal" />
           <option value="numpy.array" />
+          <option value="numpy.random.randint" />
+          <option value="numpy.random.randn" />
         </list>
       </option>
     </inspection_tool>
