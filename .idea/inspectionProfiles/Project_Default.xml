@@ -10,6 +10,10 @@
           <option value="numpy.array" />
           <option value="numpy.random.randint" />
           <option value="numpy.random.randn" />
+          <option value="numpy.core.multiarray.ndarray.sum" />
+          <option value="numpy.core.multiarray.ndarray.T" />
+          <option value="tuple.scatter" />
+          <option value="tuple.plot" />
         </list>
       </option>
     </inspection_tool>
