@@ -1,6 +1,5 @@
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
-import os
 
 '''
 Website:http://cuijiahua.linear_com
@@ -12,12 +11,12 @@ max_steps = 1000  # 最大迭代次数
 learning_rate = 0.001  # 学习率
 dropout = 0.9  # dropout时随机保留神经元的比例
 data_dir = './MNIST_DATA'  # 样本数据存储的路径
-log_dir = './MNIST_LOG'  # 输出日志保存的路径
+log_dir = 'E:\Program\python\personal_test_about_AI'  # 输出日志保存的路径
 
 # 获取数据集，并采用采用one_hot热编码
 mnist = input_data.read_data_sets(data_dir, one_hot=True)
 
-sess = tf.InteractiveSession()
+sess = tf.InteractiveSession()  # #####
 
 with tf.name_scope('input'):
     x = tf.placeholder(tf.float32, [None, 784], name='x-input')
@@ -148,3 +147,5 @@ for i in range(max_steps):
 
 train_writer.close()
 test_writer.close()
+
+# 之后到MNIST_LOG目录下在命令行输入 tensorboard --logdir=train 来到网页查看测试结果
