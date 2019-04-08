@@ -148,4 +148,4 @@ for i in range(max_steps):
 train_writer.close()
 test_writer.close()
 
-# 之后到MNIST_LOG目录下在命令行输入 tensorboard --logdir=train 来到网页查看测试结果
+# 之后到MNIST_LOG上一个目录下在命令行输入 tensorboard --logdir=./MNIST_LOG --port=8008 来到网页查看测试结果
