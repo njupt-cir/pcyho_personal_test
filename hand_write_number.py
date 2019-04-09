@@ -1,12 +1,6 @@
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
-'''
-Website:http://cuijiahua.linear_com
-Modify:2018-01-23
-Author:Jack Cui
-'''
-
 max_steps = 1000  # 最大迭代次数
 learning_rate = 0.001  # 学习率
 dropout = 0.9  # dropout时随机保留神经元的比例
@@ -16,27 +10,28 @@ log_dir = 'E:\Program\python\personal_test_about_AI'  # 输出日志保存的路
 # 获取数据集，并采用采用one_hot热编码
 mnist = input_data.read_data_sets(data_dir, one_hot=True)
 
-sess = tf.InteractiveSession()  # #####
+sess = tf.InteractiveSession()  # 创建tensorflow默认会话：
 
+# 输入
 with tf.name_scope('input'):
-    x = tf.placeholder(tf.float32, [None, 784], name='x-input')
+    x = tf.placeholder(tf.float32, [None, 784], name='x-input')  # 类型，大小，占位符名称
     y_ = tf.placeholder(tf.float32, [None, 10], name='y-input')
 
 # 保存图像信息
 with tf.name_scope('input_reshape'):
-    image_shaped_input = tf.reshape(x, [-1, 28, 28, 1])
-    tf.summary.image('input', image_shaped_input, 10)
+    image_shaped_input = tf.reshape(x, [-1, 28, 28, 1])  # 将图片展开成28*28*1的形状
+    tf.summary.image('input', image_shaped_input, 10)  # 将图片汇总给tensorboard 命名，图片数据，最多展示张数
 
 
 # 初始化权重参数
 def weight_variable(shape):
-    initial = tf.truncated_normal(shape, stddev=0.1)
+    initial = tf.truncated_normal(shape, stddev=0.1)  # 创建正太分布随机数
     return tf.Variable(initial)
 
 
 # 初始化偏执参数
 def bias_variable(shape):
-    initial = tf.constant(0.1, shape=shape)
+    initial = tf.constant(0.1, shape=shape)  # 创建初始换偏执项b 大小为传入参数的0.1
     return tf.Variable(initial)
 
 
@@ -60,6 +55,14 @@ def variable_summaries(var):
 
 # 构建神经网络
 def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
+    """
+    :param input_tensor:特征数据
+    :param input_dim: 输入数据维度大小
+    :param output_dim: 输出数据维度大小
+    :param layer_name: 命名空间
+    :param act: 激活函数
+    :return: 激励层最终输出
+    """
     # 设置命名空间
     with tf.name_scope(layer_name):
         # 调用之前的方法初始化权重w，并且调用参数信息的记录方法，记录w的信息
@@ -81,15 +84,15 @@ def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
     return activations
 
 
-hidden1 = nn_layer(x, 784, 500, 'layer1')
+hidden1 = nn_layer(x, 784, 500, 'layer1')  # 创建一个隐藏层
 
 # 创建dropout层
 with tf.name_scope('dropout'):
     keep_prob = tf.placeholder(tf.float32)
-    tf.summary.scalar('dropout_keep_probability', keep_prob)
-    dropped = tf.nn.dropout(hidden1, keep_prob)
+    tf.summary.scalar('dropout_keep_probability', keep_prob)  # 记录
+    dropped = tf.nn.dropout(hidden1, keep_prob)  # 随机关闭神经元，防止过拟合
 
-y = nn_layer(dropped, 500, 10, 'layer2', act=tf.identity)
+y = nn_layer(dropped, 500, 10, 'layer2', act=tf.identity)#创建输出层
 
 # 创建损失函数
 with tf.name_scope('loss'):
