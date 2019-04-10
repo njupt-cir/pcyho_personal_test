@@ -14,6 +14,9 @@
           <option value="numpy.core.multiarray.ndarray.T" />
           <option value="tuple.scatter" />
           <option value="tuple.plot" />
+          <option value="numpy.concatenate" />
+          <option value="numpy.zeros" />
+          <option value="numpy.arange" />
         </list>
       </option>
     </inspection_tool>
