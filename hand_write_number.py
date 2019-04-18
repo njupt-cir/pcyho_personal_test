@@ -5,7 +5,7 @@ max_steps = 1000  # 最大迭代次数
 learning_rate = 0.001  # 学习率
 dropout = 0.9  # dropout时随机保留神经元的比例
 data_dir = './MNIST_DATA'  # 样本数据存储的路径
-log_dir = 'E:\Program\python\personal_test_about_AI'  # 输出日志保存的路径
+log_dir = 'E:\\Program\\python\\personal_test_about_AI'  # 输出日志保存的路径
 
 # 获取数据集，并采用采用one_hot热编码
 mnist = input_data.read_data_sets(data_dir, one_hot=True)
@@ -92,7 +92,7 @@ with tf.name_scope('dropout'):
     tf.summary.scalar('dropout_keep_probability', keep_prob)  # 记录
     dropped = tf.nn.dropout(hidden1, keep_prob)  # 随机关闭神经元，防止过拟合
 
-y = nn_layer(dropped, 500, 10, 'layer2', act=tf.identity)#创建输出层
+y = nn_layer(dropped, 500, 10, 'layer2', act=tf.identity)  # 创建输出层
 
 # 创建损失函数
 with tf.name_scope('loss'):
